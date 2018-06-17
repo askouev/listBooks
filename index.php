@@ -23,12 +23,5 @@ foreach ($books as $key => $value) {
 }
 echo "</ol>";
 
-/*$listBooks = count($books);
-
-echo "<ol>";
-for($i = 0; $i < $listBooks; $i++){
-	echo "<li>$books[$i]</li>";
-}
-echo "</ol>";*/
 
 ?>
