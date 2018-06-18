@@ -1,27 +1,34 @@
-<?php 
+<h2>POST отправка</h2>
 
-echo "<h2>Рекомендуемые к прочтению</h2>";
+<?php
+if ( !empty($_POST) ) {
 
+	$message = "You have new message from your site: \n" 
+	. "Имя отправителя: " . $_POST["userName"] . "\n"
+	. "Email отправителя: " . $_POST["userMail"] . "\n"
+	. "Сообщение отправителя:  \n" . $_POST['Message'];
 
-$books = array("Рэй Бредбери" => "'451° по Фаренгейту', 'Вино из одуванчиков'",
-               "Грегори Дэвид Робертс" => "'Шантарам'",
-               "Джордж Оруэлл" => "'1984'",
-               "Михаил Афанасьевич Булгаков" =>  "'Мастер и Маргарита'",
-               "Эрих Мария Ремарк" => "'Три товарища'",
-               "Оскар Уайльд" => "'Портрет Дориана Грея'",
-               "Даниел Киз" => "'Цветы для Элджернона'",
-               "Джером Д. Сэлинджер" => "'Над пропастью во ржи'",
-               "Антуан де Сент-Экзюпери" => "'Маленький принц'",
-               "Лев Толстой" => "'Анна Каренина'",
-               "Габриэль Гарсиа Маркес" => "'Сто лет одиночества'",
-               "Грегори Дэвид Робертс" => "'Тень горы'",
-               "Айн Рэнд" => "'Атлант расправил плечи'" 
-            );
-echo "<ol>";
-foreach ($books as $key => $value) {
-	echo "<li><b>Автор:</b> $key<br>  <b>Книга:</b> $value<br></li>";
+	$headers = "From: myMail@mySite.ru";
+
+	$mailSend = mail( "atoom@mail.ru", "Message from my site", $message );
+
+	if( $mailSend ){
+		echo "Сообщение отправлено успешно!";
+	}else{
+		echo "Где-то произошла ошибка!";
+	}
 }
-echo "</ol>";
-
-
 ?>
+
+<form action="index.php" method="post">
+	<input type="text" name="userName" placeholder="Имя"><br><br>
+	<input type="email" name="userMail" placeholder="Ваш Email"><br><br>
+	<textarea name="Message" placeholder="Сообщение" cols="30" rows="5"></textarea><br><br>
+	<input type="submit" value="Отправить">
+</form>
+
+
+
+
+
+
